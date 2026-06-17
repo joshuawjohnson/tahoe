@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>South Lake Tahoe — Weekend Plan</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏔️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=National+Park:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Granite & Alpenglow — Tahoe / Sierra Nevada field theme */
+    --lake-deep:#0B3D5C;   /* Tahoe Deep — cobalt lake center */
+    --lake:#16688C;        /* Tahoe Blue — iconic mid-lake */
+    --lake-mid:#16688C;    /* Tahoe Blue */
+    --aqua:#3FA89B;        /* Sand Shallows — turquoise over white sand */
+    --aqua-light:#A8D6CE;  /* lightened shallows (hero eyebrows on dark) */
+    --pine:#234B36;        /* Jeffrey Pine — deep conifer */
+    --pine-soft:#3E6E52;   /* Lodgepole — soft pine */
+    --granite:#4C565A;     /* dark granite — body / secondary text */
+    --granite-light:#878C85;/* faint granite — labels */
+    --paper:#F3F1E9;       /* Snowfield — sun-bleached paper bg */
+    --surface:#FBFAF5;     /* Granite Mist — cards */
+    --ink:#232B2C;         /* Basalt — wet-granite text / headers */
+    --sand:#DFD2AE;        /* Meadow Tan — dry summer meadow */
+    --alert:#A8472E;       /* Manzanita — red bark, time-sensitive */
+    --alert-bg:#F3E2DA;    /* washed clay */
+    --alert-line:#E3C3B4;
+    --line:#C8C9BF;        /* Granite — hairlines / borders */
+    --shadow:0 1px 2px rgba(35,43,44,.05),0 6px 18px rgba(11,61,92,.06);
+    --shadow-lg:0 10px 32px rgba(11,61,92,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'National Park',system-ui,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:linear-gradient(168deg,#0A4A6E 0%,var(--lake-deep) 55%,#052B45 100%);
+    color:#fff;overflow:hidden;
+    padding:54px 0 64px;
+  }
+  .hero .topo{position:absolute;inset:0;width:100%;height:100%;opacity:.16;pointer-events:none}
+  .hero .wrap{position:relative;z-index:2}
+  .eyebrow{
+    font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--aqua-light);display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--aqua)}
+  h1{
+    font-family:'National Park','Inter',sans-serif;
+    font-weight:800;line-height:.92;letter-spacing:-.005em;
+    font-size:clamp(46px,11vw,92px);
+    margin:14px 0 8px;text-transform:uppercase;
+  }
+  h1 .em{color:#E08A4C}
+  .subhead{font-size:clamp(15px,2.4vw,18px);color:#CDE6EC;max-width:48ch;font-weight:400}
+  .factbar{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;
+  }
+  .fact{
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+    border-radius:10px;padding:10px 14px;backdrop-filter:blur(4px);
+  }
+  .fact .k{font-family:'Space Mono',monospace;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--aqua-light)}
+  .fact .v{font-size:14px;font-weight:600;margin-top:2px}
+
+  /* weather strip */
+  .weatherstrip{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+  .wx{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:10px;text-align:center}
+  .wx .d{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;color:var(--aqua-light);text-transform:uppercase}
+  .wx .t{font-family:'National Park',sans-serif;font-weight:700;font-size:26px;line-height:1.1;margin-top:2px}
+  .wx .c{font-size:11px;color:#BCD7DE;margin-top:1px}
+  .wx.clear{background:rgba(63,174,190,.18);border-color:rgba(63,174,190,.4)}
+
+  /* ---------- STICKY NAV ---------- */
+  nav{position:sticky;top:0;z-index:50;background:rgba(238,243,243,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .navinner{max-width:920px;margin:0 auto;padding:0 12px;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+  .navinner::-webkit-scrollbar{display:none}
+  .navinner a{
+    flex:0 0 auto;text-decoration:none;color:var(--granite);
+    font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.05em;
+    padding:14px 14px 12px;border-bottom:2px solid transparent;white-space:nowrap;text-transform:uppercase;
+    transition:color .2s,border-color .2s;
+  }
+  .navinner a:hover{color:var(--lake)}
+  .navinner a.active{color:var(--lake-deep);border-bottom-color:var(--aqua);font-weight:700}
+
+  section{padding:44px 0}
+  .sec-eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--lake-mid);display:flex;align-items:center;gap:10px}
+  .sec-eyebrow::before{content:"";width:22px;height:1px;background:var(--aqua)}
+  h2{font-family:'National Park',sans-serif;font-weight:700;text-transform:uppercase;font-size:clamp(28px,5vw,40px);line-height:1;letter-spacing:-.01em;margin:10px 0 6px}
+  .sec-note{color:var(--granite);font-size:15px;max-width:60ch}
+
+  /* ---------- BOOK TODAY ---------- */
+  .alert{
+    background:var(--alert-bg);border:1px solid var(--alert-line);border-radius:16px;
+    padding:24px;box-shadow:var(--shadow);margin-top:10px;
+  }
+  .alert-head{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+  .alert-badge{font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.1em;background:var(--alert);color:#fff;padding:5px 10px;border-radius:6px;text-transform:uppercase}
+  .alert h3{font-family:'National Park',sans-serif;font-size:26px;text-transform:uppercase;color:#8A3D17;letter-spacing:0}
+  .alert p.lead{color:#8A4a2c;font-size:14px;margin-bottom:14px}
+  .task{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--alert-line)}
+  .task:last-child{padding-bottom:0}
+  .check{flex:0 0 auto;width:24px;height:24px;border:2px solid var(--alert);border-radius:7px;background:#fff;cursor:pointer;position:relative;margin-top:1px;transition:background .15s}
+  .check:focus-visible{outline:2px solid var(--lake);outline-offset:2px}
+  .check::after{content:"";position:absolute;left:7px;top:3px;width:6px;height:11px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg) scale(0);transition:transform .15s}
+  .task.done .check{background:var(--alert)}
+  .task.done .check::after{transform:rotate(45deg) scale(1)}
+  .task.done .task-body{opacity:.5;text-decoration:line-through;text-decoration-color:rgba(138,61,23,.5)}
+  .task-body strong{display:block;font-size:15px;color:var(--ink)}
+  .task-body span{font-size:13px;color:var(--granite)}
+  .task-body a{color:var(--alert);font-weight:600;text-decoration:none}
+  .task-body a:hover{text-decoration:underline}
+
+  /* principle band */
+  .principle{background:var(--pine);color:#E4EFE9;border-radius:16px;padding:26px 28px;margin-top:26px;position:relative;overflow:hidden}
+  .principle .sec-eyebrow{color:#9FCBB9}
+  .principle .sec-eyebrow::before{background:#6FB39A}
+  .principle p{font-size:16px;max-width:64ch;margin-top:10px;color:#D7E8E0}
+  .principle p .hl{color:#fff;font-weight:600;border-bottom:2px solid var(--aqua)}
+
+  /* ---------- DAY ---------- */
+  .day-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:12px}
+  .day-head .lhs{display:flex;align-items:baseline;gap:14px}
+  .day-num{font-family:'National Park',sans-serif;font-weight:800;font-size:clamp(40px,9vw,64px);line-height:.8;color:var(--lake-deep)}
+  .day-name{display:flex;flex-direction:column}
+  .day-name .dow{font-family:'National Park',sans-serif;font-weight:700;text-transform:uppercase;font-size:24px;line-height:1}
+  .day-name .date{font-family:'Space Mono',monospace;font-size:12px;color:var(--granite-light);letter-spacing:.06em}
+  .day-wx{font-family:'Space Mono',monospace;font-size:12px;color:var(--granite);text-align:right;white-space:nowrap}
+  .day-wx b{color:var(--ink)}
+  .goal{font-size:15px;color:var(--granite);font-style:italic;margin:14px 0 22px;padding-left:14px;border-left:3px solid var(--aqua)}
+
+  /* timeline */
+  .timeline{position:relative;padding-left:8px}
+  .event{display:grid;grid-template-columns:62px 1fr;gap:16px;position:relative;padding-bottom:18px}
+  .event::before{/* rail */
+    content:"";position:absolute;left:70px;top:6px;bottom:-2px;width:2px;
+    background:repeating-linear-gradient(var(--aqua) 0 6px,transparent 6px 11px);
+  }
+  .event:last-child::before{display:none}
+  .time{font-family:'Space Mono',monospace;font-weight:700;font-size:14px;color:var(--lake-deep);text-align:right;padding-top:2px}
+  .time span{display:block;font-size:10px;font-weight:400;color:var(--granite-light)}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px;box-shadow:var(--shadow);position:relative;margin-left:14px}
+  .card::before{/* dot */
+    content:"";position:absolute;left:-22px;top:20px;width:11px;height:11px;border-radius:50%;
+    background:var(--aqua);border:2.5px solid var(--paper);box-shadow:0 0 0 1px var(--aqua);
+  }
+  .card h4{font-size:16px;font-weight:700;display:inline}
+  .card p{font-size:14px;color:var(--granite);margin-top:6px}
+  .card p a{color:var(--lake);font-weight:600;text-decoration:none}
+  .card p a:hover{text-decoration:underline}
+
+  /* map link chip */
+  .maps{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}
+  .maplink{display:inline-flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--lake-deep);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:5px 10px;background:#F2FAFB;transition:background .15s,border-color .15s,transform .1s}
+  .maplink::before{content:"📍";font-size:11px;line-height:1}
+  .maplink:hover{background:#E2F2F4;border-color:var(--aqua);transform:translateY(-1px)}
+  .maplink:focus-visible{outline:2px solid var(--lake);outline-offset:2px}
+  .meal .maps{margin-top:9px}
+  .note .maps{margin-top:8px;gap:6px}
+  .note .maplink{padding:3px 8px;font-size:10px;background:#fff}
+
+  .tags{display:inline-flex;gap:6px;flex-wrap:wrap;vertical-align:middle;margin-left:8px}
+  .tag{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 7px;border-radius:5px}
+  .tag.dog{background:#E2F2F4;color:#0C6177}
+  .tag.reserve{background:var(--alert-bg);color:#9c4a1f}
+  .tag.group{background:#E4EFE9;color:#234E40}
+  .tag.split{background:#EBE3D2;color:#6b5a32}
+  .tag.flex{background:#E9ECEE;color:#4a555c}
+
+  /* split block */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:2px 0 18px 14px}
+  .track{border-radius:14px;padding:16px 18px;border:1px solid var(--line);box-shadow:var(--shadow)}
+  .track.a{background:linear-gradient(180deg,#F2FAFB,#fff)}
+  .track.b{background:linear-gradient(180deg,#F4F8F6,#fff)}
+  .track .tlabel{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+  .track.a .tlabel{color:var(--lake)}
+  .track.b .tlabel{color:var(--pine-soft)}
+  .track .tlabel::before{content:"";width:8px;height:8px;border-radius:50%}
+  .track.a .tlabel::before{background:var(--aqua)}
+  .track.b .tlabel::before{background:var(--pine-soft)}
+  .track h4{font-size:15px;font-weight:700}
+  .track p{font-size:13.5px;color:var(--granite);margin-top:5px}
+  .track .swap{font-size:12.5px;color:var(--granite);margin-top:9px;padding-top:9px;border-top:1px dashed var(--line)}
+  .track .swap b{color:var(--alert)}
+  .split-banner{margin-left:14px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--alert);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .split-banner::before,.split-banner::after{content:"";height:1px;background:var(--alert-line);flex:1}
+
+  /* ---------- EAT ---------- */
+  .eat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:18px}
+  .meal{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:15px 16px;box-shadow:var(--shadow)}
+  .meal .when{font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--lake-mid)}
+  .meal .name{font-weight:700;font-size:15px;margin-top:3px}
+  .meal .desc{font-size:13px;color:var(--granite);margin-top:3px}
+  .meal.in{background:linear-gradient(180deg,#F4F8F6,#fff);border-color:#D5E2DC}
+  .meal.in .when{color:var(--pine-soft)}
+
+  /* ---------- FIELD NOTES ---------- */
+  .notes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+  .note{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+  .note h4{font-family:'National Park',sans-serif;text-transform:uppercase;font-size:19px;letter-spacing:.01em;color:var(--lake-deep);margin-bottom:8px}
+  .note ul{list-style:none;font-size:13.5px;color:var(--granite)}
+  .note li{padding-left:16px;position:relative;margin-bottom:7px}
+  .note li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--aqua)}
+  .note.warn{background:var(--alert-bg);border-color:var(--alert-line)}
+  .note.warn h4{color:#8A3D17}
+  .note.warn li::before{background:var(--alert)}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--lake-deep);color:#BCD7DE;padding:34px 0 40px;margin-top:20px}
+  footer .share{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+  footer h3{font-family:'National Park',sans-serif;color:#fff;text-transform:uppercase;font-size:22px}
+  footer p{font-size:13px;max-width:52ch;margin-top:6px}
+  .btn{font-family:'Space Mono',monospace;font-size:13px;font-weight:700;letter-spacing:.04em;background:var(--aqua);color:#06303f;border:none;border-radius:9px;padding:12px 18px;cursor:pointer;text-transform:uppercase;transition:transform .12s,background .2s}
+  .btn:hover{background:#5ec4d3;transform:translateY(-1px)}
+  .btn:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
+  @media (max-width:680px){
+    .weatherstrip{grid-template-columns:repeat(2,1fr)}
+    .split{grid-template-columns:1fr}
+    .eat-grid{grid-template-columns:1fr}
+    .notes-grid{grid-template-columns:1fr}
+    .event{grid-template-columns:50px 1fr;gap:10px}
+    .event::before{left:56px}
+    .card{margin-left:10px}
+    .card::before{left:-18px}
+    .day-head .day-wx{text-align:left}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+  @media print{
+    nav,footer .btn{display:none}
+    body{background:#fff}
+    .hero{background:var(--lake-deep)!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .card,.meal,.note,.track,.alert,.principle{box-shadow:none}
+    section{padding:20px 0;break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="topo" viewBox="0 0 920 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#7FD0DD" stroke-width="1">
+      <path d="M-20 90 Q 230 30 460 95 T 940 90"/>
+      <path d="M-20 140 Q 230 80 460 150 T 940 140"/>
+      <path d="M-20 195 Q 250 130 470 205 T 940 195"/>
+      <path d="M-20 255 Q 230 190 460 265 T 940 255"/>
+      <path d="M-20 320 Q 250 250 470 330 T 940 320"/>
+      <path d="M-20 390 Q 230 320 460 400 T 940 390"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow">Field plan &nbsp;·&nbsp; Jun 18–21, 2026</div>
+    <h1>South Lake<br>Tahoe<span class="em">.</span></h1>
+    <p class="subhead">A dog-friendly weekend built for two speeds — moderate with the parents, full-tilt with the 30s — and one dog that's in on as much as possible.</p>
+    <div class="factbar">
+      <div class="fact"><div class="k">Crew</div><div class="v">6 adults + 1 dog</div></div>
+      <div class="fact"><div class="k">Arrivals</div><div class="v">Thu 2pm · Fri 10am</div></div>
+      <div class="fact"><div class="k">Depart</div><div class="v">Sun after lunch</div></div>
+      <div class="fact"><div class="k">Base</div><div class="v">South Lake Tahoe</div></div>
+    </div>
+    <div class="weatherstrip">
+      <div class="wx"><div class="d">Thu 18</div><div class="t">79°</div><div class="c">35% PM rain</div></div>
+      <div class="wx"><div class="d">Fri 19</div><div class="t">71°</div><div class="c">25% rain</div></div>
+      <div class="wx clear"><div class="d">Sat 20</div><div class="t">72°</div><div class="c">Clear ✦</div></div>
+      <div class="wx clear"><div class="d">Sun 21</div><div class="t">76°</div><div class="c">Clear ✦</div></div>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="navinner">
+    <a href="#book">Book today</a>
+    <a href="#thu">Thu 18</a>
+    <a href="#fri">Fri 19</a>
+    <a href="#sat">Sat 20</a>
+    <a href="#sun">Sun 21</a>
+    <a href="#eat">Eat</a>
+    <a href="#notes">Field notes</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- BOOK TODAY -->
+  <section id="book">
+    <div class="sec-eyebrow">Do this first</div>
+    <h2>Book today</h2>
+    <p class="sec-note">The trip starts tomorrow. These four lock in the weekend — the rest is flexible. Tap to check them off.</p>
+    <div class="alert">
+      <div class="alert-head">
+        <span class="alert-badge">Time-sensitive</span>
+        <h3>4 things that can't wait</h3>
+      </div>
+      <p class="lead">Summer-weekend slots and the rental's dog situation decide whether Saturday works as planned.</p>
+      <div class="task" tabindex="0" role="checkbox" aria-checked="false"><div class="check"></div><div class="task-body"><strong>Camp Richardson Corral — reserve Sat ~9:30am ride</strong><span>Call <a href="tel:5305413113">530-541-3113</a> · summer slots fill, reservation required</span></div></div>
+      <div class="task" tabindex="0" role="checkbox" aria-checked="false"><div class="check"></div><div class="task-body"><strong>Artemis Lakefront Café — book 6 for Fri ~7pm</strong><span>Call <a href="tel:5305423332">530-542-3332</a> · best lakefront patio, sunset books out</span></div></div>
+      <div class="task" tabindex="0" role="checkbox" aria-checked="false"><div class="check"></div><div class="task-body"><strong>Heavenly Gondola — buy timed tickets for Sat afternoon</strong><span><a href="https://www.skiheavenly.com" target="_blank" rel="noopener">skiheavenly.com</a> · clear-day slots sell through</span></div></div>
+      <div class="task" tabindex="0" role="checkbox" aria-checked="false"><div class="check"></div><div class="task-body"><strong>Confirm the rental allows the dog + has A/C</strong><span>Two no-dog windows need the dog resting indoors, not in a hot car</span></div></div>
+    </div>
+
+    <div class="principle">
+      <div class="sec-eyebrow">How this plan thinks</div>
+      <p>Two fitness tiers and a dog that can't sit in a hot car. So we <span class="hl">front-load dog-inclusive group activities</span> on the iffy-weather days, <span class="hl">split the group Saturday morning</span>, and save the no-dog marquee item — the gondola — for the <span class="hl">clear afternoon</span> when the dog can rest in the A/C rental.</p>
+    </div>
+  </section>
+
+  <!-- THURSDAY -->
+  <section id="thu">
+    <div class="day-head">
+      <div class="lhs">
+        <div class="day-num">18</div>
+        <div class="day-name"><span class="dow">Thursday</span><span class="date">ARRIVAL · CORE 4</span></div>
+      </div>
+      <div class="day-wx"><b>79°F</b> · 35% PM rain</div>
+    </div>
+    <p class="goal">Settle, hydrate, take it easy. Sea level to 6,200 ft — no exertion today.</p>
+    <div class="timeline">
+      <div class="event"><div class="time">2:00<span>pm</span></div><div class="card"><h4>Arrive & settle the dog</h4><span class="tags"><span class="tag dog">Dog</span></span><p>Check in, unpack, let the dog decompress.</p></div></div>
+      <div class="event"><div class="time">2:30<span>pm</span></div><div class="card"><h4>Grocery run</h4><p>Stock breakfasts plus Saturday's grill-in.</p><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Safeway+South+Lake+Tahoe" target="_blank" rel="noopener">Safeway (The Y)</a></div></div></div>
+      <div class="event"><div class="time">4:00<span>pm</span></div><div class="card"><h4>Kiva Beach — if dry</h4><span class="tags"><span class="tag dog">Dog</span><span class="tag flex">Weather-dependent</span></span><p>Let the dog swim, easy sand walk, no agenda. If it's raining, just rest at the rental.</p><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Kiva+Beach+South+Lake+Tahoe" target="_blank" rel="noopener">Kiva Beach</a></div></div></div>
+      <div class="event"><div class="time">6:30<span>pm</span></div><div class="card"><h4>Dinner — Lake Tahoe AleWorX (The Y)</h4><span class="tags"><span class="tag dog">Dog patio</span></span><p>Fire pits, self-pour taps, easy menu. No cooking on arrival night. Push water on the parents — altitude hits hardest the first 24 hrs.</p><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Lake+Tahoe+AleWorX+The+Y+South+Lake+Tahoe" target="_blank" rel="noopener">Lake Tahoe AleWorX</a></div></div></div>
+    </div>
+  </section>
+
+  <!-- FRIDAY -->
+  <section id="fri">
+    <div class="day-head">
+      <div class="lhs">
+        <div class="day-num">19</div>
+        <div class="day-name"><span class="dow">Friday</span><span class="date">GROUP ASSEMBLES · 6 BY 10AM</span></div>
+      </div>
+      <div class="day-wx"><b>71°F</b> · 25% rain</div>
+    </div>
+    <p class="goal">Ease the 30s in. First relaxed day as a six — nothing that needs a clear sky.</p>
+    <div class="timeline">
+      <div class="event"><div class="time">8:30<span>am</span></div><div class="card"><h4>Easy breakfast + dog walk</h4><span class="tags"><span class="tag dog">Dog</span></span><p>Cook in, or grab <strong>Sprouts Café</strong>. Stay near town to meet the 10am crew.</p><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Sprouts+Natural+Foods+Cafe+South+Lake+Tahoe" target="_blank" rel="noopener">Sprouts Café</a></div></div></div>
+      <div class="event"><div class="time">10:00<span>am</span></div><div class="card"><h4>Sister + husband arrive</h4><span class="tags"><span class="tag group">Whole group</span></span><p>Settle in, regroup.</p></div></div>
+      <div class="event"><div class="time">11:00<span>am</span></div><div class="card"><h4>Kiva Beach + Pope–Baldwin bike path</h4><span class="tags"><span class="tag dog">Dog</span><span class="tag group">Whole group</span></span><p>Flat, paved, dog-inclusive. Parents ride a short stretch; the 30s push farther. Rent cruisers near the path.</p><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Kiva+Beach+South+Lake+Tahoe" target="_blank" rel="noopener">Kiva Beach</a><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Pope-Baldwin+Bike+Path+South+Lake+Tahoe" target="_blank" rel="noopener">Bike path</a></div></div></div>
+      <div class="event"><div class="time">1:30<span>pm</span></div><div class="card"><h4>Lunch — Base Camp Pizza Co.</h4><span class="tags"><span class="tag dog">Dog patio</span></span><p>Heavenly Village, two dog patios. Or back to the rental.</p><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Base+Camp+Pizza+Co+Heavenly+Village+South+Lake+Tahoe" target="_blank" rel="noopener">Base Camp Pizza</a></div></div></div>
+      <div class="event"><div class="time">3:00<span>pm</span></div><div class="card"><h4>Open / rest</h4><span class="tags"><span class="tag split">Optional split</span></span><p>The 30s can grab a jet-ski or SUP hour while others nap with the dog (afternoon water is choppier — manage expectations).</p></div></div>
+      <div class="event"><div class="time">7:00<span>pm</span></div><div class="card"><h4>Dinner — Artemis Lakefront Café</h4><span class="tags"><span class="tag reserve">Reserved</span><span class="tag dog">Dog patio</span></span><p>Sunset on the water, whole group. This is the nice one.</p><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Artemis+Lakefront+Cafe+900+Ski+Run+Blvd+South+Lake+Tahoe" target="_blank" rel="noopener">Artemis Lakefront Café</a></div></div></div>
+    </div>
+  </section>
+
+  <!-- SATURDAY -->
+  <section id="sat">
+    <div class="day-head">
+      <div class="lhs">
+        <div class="day-num">20</div>
+        <div class="day-name"><span class="dow">Saturday</span><span class="date">THE BIG DAY · CLEAR</span></div>
+      </div>
+      <div class="day-wx"><b>72°F</b> · clear ✦</div>
+    </div>
+    <p class="goal">Everyone gets their version of a great day. Split the morning, reunite for the afternoon.</p>
+
+    <div class="split-banner">Morning — split</div>
+    <div class="split">
+      <div class="track a">
+        <div class="tlabel">You + wife + parents + dog</div>
+        <h4>8:00am · Kiva Beach, early</h4>
+        <p>Beat the parking crunch (lot fills by 9–10am). Dog swims, relaxed sand morning.</p>
+        <div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Kiva+Beach+South+Lake+Tahoe" target="_blank" rel="noopener">Kiva Beach</a></div>
+      </div>
+      <div class="track b">
+        <div class="tlabel">Sister + husband</div>
+        <h4>9:30am · Camp Richardson horseback</h4>
+        <p>~2 hrs, trail passes Fallen Leaf Lake. Low-exertion but scenic.</p>
+        <p class="swap"><b>Swap →</b> if they'd rather earn it, send them up to Floating Island Lake (~35–45 min climb, turn back). Dog sits this one out.</p>
+        <div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Camp+Richardson+Corral+South+Lake+Tahoe" target="_blank" rel="noopener">Camp Richardson Corral</a><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Glen+Alpine+Trailhead+Fallen+Leaf+Lake+Tahoe" target="_blank" rel="noopener">Floating Island trailhead</a></div>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="event"><div class="time">11:30<span>am</span></div><div class="card"><h4>Reconvene</h4><span class="tags"><span class="tag group">Whole group</span></span><p>Everyone back together.</p></div></div>
+      <div class="event"><div class="time">12:30<span>pm</span></div><div class="card"><h4>Lunch — South Lake Brewing, Libation Lodge</h4><span class="tags"><span class="tag dog">Dog patio</span></span><p>Smash burgers and the pretzel. Or Base Camp.</p><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=South+Lake+Brewing+Company+South+Lake+Tahoe" target="_blank" rel="noopener">South Lake Brewing</a></div></div></div>
+      <div class="event"><div class="time">2:30<span>pm</span></div><div class="card"><h4>Heavenly Gondola</h4><span class="tags"><span class="tag reserve">Ticketed</span><span class="tag group">Whole group</span></span><p>Up to the ~9,100 ft observation deck — max payoff, minimal effort, the parents' highlight. Clear day is the whole point. <strong>Dog rests in the A/C rental ~2–3 hrs.</strong> Easy pace up top; the altitude is real.</p><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Heavenly+Gondola+Heavenly+Village+South+Lake+Tahoe" target="_blank" rel="noopener">Heavenly Gondola</a></div></div></div>
+      <div class="event"><div class="time">6:30<span>pm</span></div><div class="card"><h4>Grill in at the rental</h4><span class="tags"><span class="tag dog">Dog</span></span><p>Relaxed after a full day, dog included, uses the groceries. No grill? MacDuff's Pub has a covered patio.</p><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=MacDuffs+Public+House+South+Lake+Tahoe" target="_blank" rel="noopener">MacDuff's Pub</a></div></div></div>
+    </div>
+  </section>
+
+  <!-- SUNDAY -->
+  <section id="sun">
+    <div class="day-head">
+      <div class="lhs">
+        <div class="day-num">21</div>
+        <div class="day-name"><span class="dow">Sunday</span><span class="date">HALF DAY · DEPART AFTER LUNCH</span></div>
+      </div>
+      <div class="day-wx"><b>76°F</b> · clear ✦</div>
+    </div>
+    <p class="goal">One good dog-inclusive send-off close to town, then go.</p>
+    <div class="timeline">
+      <div class="event"><div class="time">8:30<span>am</span></div><div class="card"><h4>Breakfast in + start packing</h4><p>Load down between bites.</p></div></div>
+      <div class="event"><div class="time">9:30<span>am</span></div><div class="card"><h4>Van Sickle Bi-State Park</h4><span class="tags"><span class="tag dog">Dog</span><span class="tag group">Whole group</span><span class="tag split">Splits by level</span></span><p>Walkable from Stateline. The 30s push to the waterfall/lookout; parents take the lower loop; everyone reunites at the lot. Strong last impression.</p><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Van+Sickle+Bi-State+Park+South+Lake+Tahoe" target="_blank" rel="noopener">Van Sickle Bi-State Park</a></div></div></div>
+      <div class="event"><div class="time">11:30<span>am</span></div><div class="card"><h4>Check out / load up</h4></div></div>
+      <div class="event"><div class="time">12:00<span>pm</span></div><div class="card"><h4>Farewell lunch — MacDuff's or Base Camp</h4><span class="tags"><span class="tag dog">Dog patio</span></span><p>On the way out.</p><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=MacDuffs+Public+House+South+Lake+Tahoe" target="_blank" rel="noopener">MacDuff's Pub</a><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Base+Camp+Pizza+Co+Heavenly+Village+South+Lake+Tahoe" target="_blank" rel="noopener">Base Camp Pizza</a></div></div></div>
+      <div class="event"><div class="time">1:30<span>pm</span></div><div class="card"><h4>Depart</h4><p>Head home.</p></div></div>
+    </div>
+  </section>
+
+  <!-- EAT -->
+  <section id="eat">
+    <div class="sec-eyebrow">Where to eat</div>
+    <h2>The meal ledger</h2>
+    <p class="sec-note">Every spot listed has a confirmed dog-friendly patio. Green cards are meals in. Tap any spot to open it in Maps.</p>
+    <div class="eat-grid">
+      <div class="meal"><div class="when">Thu · Dinner</div><div class="name">Lake Tahoe AleWorX</div><div class="desc">Fire pits, self-pour taps, easy arrival-night menu.</div><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Lake+Tahoe+AleWorX+The+Y+South+Lake+Tahoe" target="_blank" rel="noopener">Map</a></div></div>
+      <div class="meal in"><div class="when">Fri · Breakfast</div><div class="name">Sprouts Café — or cook in</div><div class="desc">Fast, healthy, grab-and-go.</div><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Sprouts+Natural+Foods+Cafe+South+Lake+Tahoe" target="_blank" rel="noopener">Map</a></div></div>
+      <div class="meal"><div class="when">Fri · Lunch</div><div class="name">Base Camp Pizza Co.</div><div class="desc">Heavenly Village, two dog patios.</div><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Base+Camp+Pizza+Co+Heavenly+Village+South+Lake+Tahoe" target="_blank" rel="noopener">Map</a></div></div>
+      <div class="meal"><div class="when">Fri · Dinner</div><div class="name">Artemis Lakefront Café <span style="color:var(--alert);font-size:11px;">RESERVE</span></div><div class="desc">Sunset on the water, the nice one.</div><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Artemis+Lakefront+Cafe+900+Ski+Run+Blvd+South+Lake+Tahoe" target="_blank" rel="noopener">Map</a></div></div>
+      <div class="meal"><div class="when">Sat · Lunch</div><div class="name">South Lake Brewing — Libation Lodge</div><div class="desc">Smash burgers, the famous pretzel.</div><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=South+Lake+Brewing+Company+South+Lake+Tahoe" target="_blank" rel="noopener">Map</a></div></div>
+      <div class="meal in"><div class="when">Sat · Dinner</div><div class="name">Grill in at the rental</div><div class="desc">Relaxed, dog included, after the big day.</div></div>
+      <div class="meal"><div class="when">Sun · Lunch</div><div class="name">MacDuff's Pub / Base Camp</div><div class="desc">Departure meal on the way out.</div><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=MacDuffs+Public+House+South+Lake+Tahoe" target="_blank" rel="noopener">MacDuff's</a><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Base+Camp+Pizza+Co+Heavenly+Village+South+Lake+Tahoe" target="_blank" rel="noopener">Base Camp</a></div></div>
+      <div class="meal in"><div class="when">Plan B</div><div class="name">MacDuff's covered patio</div><div class="desc">The rainy-day fallback for any outdoor block.</div><div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=MacDuffs+Public+House+South+Lake+Tahoe" target="_blank" rel="noopener">Map</a></div></div>
+    </div>
+  </section>
+
+  <!-- FIELD NOTES -->
+  <section id="notes">
+    <div class="sec-eyebrow">Run the trip on these</div>
+    <h2>Field notes</h2>
+    <div class="notes-grid">
+      <div class="note">
+        <h4>Dog</h4>
+        <ul>
+          <li>Water + collapsible bowl on every hike — granite gets hot and exposed by midday.</li>
+          <li>Leashes required at every beach and trail here.</li>
+          <li>Never in a parked car — the gondola window is why the dog rests in the A/C rental.</li>
+          <li>Kiva and the bike path are the two best play sessions — both early-day.</li>
+        </ul>
+      </div>
+      <div class="note warn">
+        <h4>Parking</h4>
+        <ul>
+          <li>West-shore lots — Kiva, Eagle Falls, Fallen Leaf — fill by 9–10am.</li>
+          <li>Be parked before 9 on weekend mornings. Not a suggestion.</li>
+          <li>Van Sickle (Stateline) is the exception — walkable, less of a crunch.</li>
+        </ul>
+        <div class="maps"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Eagle+Falls+Trailhead+Lake+Tahoe" target="_blank" rel="noopener">Eagle Falls</a><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Fallen+Leaf+Lake+South+Lake+Tahoe" target="_blank" rel="noopener">Fallen Leaf Lake</a></div>
+      </div>
+      <div class="note">
+        <h4>If plans slip</h4>
+        <ul>
+          <li><b>Thu/Fri rain:</b> swap the beach/bike block for Heavenly Village or MacDuff's covered patio.</li>
+          <li><b>Parents fading at altitude:</b> drop Sunday to just the lower Van Sickle loop, or a lakeside coffee.</li>
+          <li><b>30s want more:</b> parasail or a jet-ski hour Saturday before the gondola.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="share">
+      <div>
+        <h3>Share the plan</h3>
+        <p>Send this link to the crew — it opens in any browser, on any phone, no app or login. Tap any venue to open it in Maps; check off the bookings as they're done.</p>
+      </div>
+      <button class="btn" onclick="window.print()">Print / Save as PDF</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Booking checkboxes (session-only)
+  document.querySelectorAll('.task').forEach(function(t){
+    function toggle(){ t.classList.toggle('done'); t.setAttribute('aria-checked', t.classList.contains('done')); }
+    t.addEventListener('click', function(e){ if(e.target.tagName!=='A') toggle(); });
+    t.addEventListener('keydown', function(e){ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(); } });
+  });
+
+  // Scroll-spy nav highlight
+  var links = Array.from(document.querySelectorAll('.navinner a'));
+  var map = {};
+  links.forEach(function(l){ map[l.getAttribute('href').slice(1)] = l; });
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(en.isIntersecting){
+        links.forEach(function(l){ l.classList.remove('active'); });
+        if(map[en.target.id]) map[en.target.id].classList.add('active');
+      }
+    });
+  }, { rootMargin:'-45% 0px -50% 0px' });
+  document.querySelectorAll('main section, #book').forEach(function(s){ spy.observe(s); });
+</script>
+</body>
+</html>
